@@ -23,3 +23,50 @@ npm run test
 npm run lint
 npm run build
 ```
+
+## Docker
+
+### Build and Run with Docker
+
+1. **Build image**:
+   ```sh
+   docker build -t attendance-frontend .
+   ```
+
+   To specify a custom backend API URL during build:
+   ```sh
+   docker build --build-arg VITE_API_BASE_URL=https://api.yourdomain.com -t attendance-frontend .
+   ```
+
+2. **Run container**:
+   ```sh
+   docker run -d -p 3000:80 --name attendance-frontend attendance-frontend
+   ```
+   Open `http://localhost:3000` in your browser.
+
+### Run with Docker Compose
+
+```sh
+docker compose up -d --build
+```
+To stop the container:
+```sh
+docker compose down
+```
+
+## CI/CD Pipeline (GitHub Actions)
+
+The repository includes an automated CI/CD pipeline configured at `.github/workflows/frontend-ci.yml`:
+
+1. **Continuous Integration (CI)**:
+   - Triggers on `push` and `pull_request` to `master` and `main`.
+   - Runs `npm ci`, Vitest tests (`npm run test`), ESLint (`npm run lint`), and production build (`npm run build`).
+
+2. **Continuous Delivery (CD)**:
+   - On pushes to `master`/`main` or release tags (`v*`), builds the multi-stage Docker container with layer caching.
+   - Pushes automatically to **GitHub Container Registry (GHCR)**:
+     ```
+     ghcr.io/<owner>/attendance-management-frontend:latest
+     ```
+   - *(Optional)* If `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` are configured in your repository secrets, it also pushes to Docker Hub.
+
