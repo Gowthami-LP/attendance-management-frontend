@@ -46,9 +46,13 @@ npm run build
 
 ### Run with Docker Compose
 
+Start the backend Compose stack first so the API is available on host port 8000. Then start the frontend from this repository:
+
 ```sh
 docker compose up -d --build
 ```
+
+Open `http://localhost:3000`. Nginx forwards `/backend-api/` requests to the backend at `http://host.docker.internal:8000`, so the browser uses the same origin and does not need a separate CORS configuration.
 To stop the container:
 ```sh
 docker compose down
