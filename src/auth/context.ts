@@ -1,9 +1,12 @@
 import { createContext } from "react";
-import type { AdminUser, LoginRequest } from "../types/auth";
+import type { AdminUser, LoginRequest, Tenant } from "../types/auth";
 
 export interface AuthContextValue {
   admin: AdminUser | null;
+  tenants: Tenant[];
+  activeTenantId: string | null;
   login: (credentials: LoginRequest) => Promise<void>;
+  selectTenant: (tenantId: string) => void;
   logout: () => void;
 }
 
