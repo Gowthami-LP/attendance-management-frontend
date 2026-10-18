@@ -12,3 +12,10 @@ export interface AdminUser {
   email: string;
   role: string;
 }
+
+export interface Tenant {
+  id: string;
+  name: string;
+  slug: string;
+  status: "active" | "suspended" | "deactivated";
+}

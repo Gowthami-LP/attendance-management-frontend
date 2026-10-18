@@ -123,6 +123,12 @@ a {
   font-size: 14px;
 }
 
+.header-tenant {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .page-content {
   max-width: 1600px;
   margin: 0 auto;
@@ -564,6 +570,11 @@ tbody tr:last-child td {
 
 .login-card > .muted {
   margin: -12px 0 4px;
+}
+
+.tenant-options {
+  display: grid;
+  gap: 8px;
 }
 
 @media (max-width: 850px) {

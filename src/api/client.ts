@@ -1,5 +1,9 @@
 import axios from "axios";
-import { getAccessToken, notifyUnauthorized } from "./token";
+import {
+  getAccessToken,
+  getActiveTenantId,
+  notifyUnauthorized,
+} from "./token";
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || "/backend-api",
@@ -13,6 +17,11 @@ apiClient.interceptors.request.use((config) => {
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  const tenantId = getActiveTenantId();
+  if (tenantId) {
+    config.headers.set("X-Tenant-ID", tenantId);
   }
 
   return config;

@@ -14,7 +14,7 @@ For production builds, set `VITE_API_BASE_URL` to the deployed API origin or a s
 
 ## Authentication
 
-Sign-in uses the backend admin email/password endpoint and bearer token. The token is held in memory and is not written to browser storage; a page refresh requires signing in again. A `401` response clears the current frontend session. Backend authorization remains the security boundary.
+Sign-in uses the backend admin email/password endpoint and bearer token. After sign-in, the frontend loads the organizations available to that admin. A single active organization is selected automatically; admins with access to multiple organizations choose one before entering the application and can switch organizations from the header. Tenant-scoped requests include the backend's `X-Tenant-ID` header. The token and selected organization are held in memory and are not written to browser storage; a page refresh requires signing in again. A `401` response clears the current frontend session. Backend authorization remains the security boundary.
 
 ## Checks
 
@@ -73,4 +73,3 @@ The repository includes an automated CI/CD pipeline configured at `.github/workf
      ghcr.io/<owner>/attendance-management-frontend:latest
      ```
    - *(Optional)* If `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` are configured in your repository secrets, it also pushes to Docker Hub.
-
