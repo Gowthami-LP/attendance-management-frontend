@@ -4,6 +4,7 @@ export interface Employee {
   email: string;
   department: string;
   is_active: boolean;
+  tenant_id?: string | null;
 }
 
 export interface EmployeeCreate {

@@ -2,11 +2,13 @@ export type NotificationStatus = "pending" | "sending" | "sent" | "failed";
 
 export interface NotificationRecord {
   notification_id: string;
+  tenant_id?: string | null;
   employee_id: string;
   recipient_email: string;
   week_start: string;
   week_end: string;
   subject: string;
+  body: string;
   status: NotificationStatus;
   attempts: number;
   created_at: string;

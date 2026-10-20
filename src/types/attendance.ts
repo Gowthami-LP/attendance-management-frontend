@@ -4,4 +4,5 @@ export interface AttendanceRecord {
   entry_time: string;
   exit_time: string | null;
   duration_minutes: number | null;
+  tenant_id?: string | null;
 }

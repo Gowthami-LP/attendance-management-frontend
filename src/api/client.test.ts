@@ -14,7 +14,7 @@ describe("apiClient tenant context", () => {
     setActiveTenantId("tenant-acme");
     let requestHeaders: AxiosHeaders | undefined;
 
-    await apiClient.get("/api/v1/employees", {
+    await apiClient.get("/employees", {
       adapter: async (config) => {
         requestHeaders = config.headers;
         return {

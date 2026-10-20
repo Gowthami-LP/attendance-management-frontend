@@ -18,4 +18,10 @@ export interface Tenant {
   name: string;
   slug: string;
   status: "active" | "suspended" | "deactivated";
+  policy?: {
+    min_qualifying_days: number;
+    min_hours_per_day: number;
+    min_weekly_hours: number;
+  };
+  created_at?: string | null;
 }
